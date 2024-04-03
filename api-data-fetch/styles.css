@@ -1,0 +1,159 @@
+body{
+    overflow-x: hidden;
+    width: 100vw;
+    background: rgba(33, 29, 57, 0.076);
+}
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+header{
+    padding: 0 30px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: slategrey;
+    box-shadow: 0 3px 2px 1px rgba(0, 0, 0, 0.45);
+    z-index:99;
+}
+.subHeader{
+    padding: 12px 0px;
+    display: flex;
+    align-self: center;
+    justify-content: space-between;
+}
+.search{
+   border: none;
+   outline: none;
+   padding: 7px 12px;
+   background: rgba(245, 222, 179, 0.741);
+   border-radius: 10px;
+}
+.searchBar{
+    display: flex;
+    align-items: center;
+}
+.clear{
+    display: none;
+    border-radius: 50%;
+    font-size: 15px;
+    background: white;
+    padding: 4px;
+    cursor: pointer;
+}:hover{
+    transform: translateX(1.2);
+}
+.card{
+    position: relative;
+    padding: 100px 20px;
+    height: auto;
+}
+#cardContainer{
+    display: grid;
+    grid-template-columns: repeat(3, 2fr);
+    position: relative;
+    gap: 15px;
+}
+.cardList{
+    background: slategrey;
+    padding: 8px;
+    border-radius: 8px;
+    box-shadow: 0 4px 1px 0 rgba(15, 17, 129, 0.197);
+    cursor: pointer;
+    transition: 600ms;
+}
+.cardList:hover{
+   transform: scale(1.04);
+}
+.errors{
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: brown;
+    color: beige;
+    font-weight: 500;
+    border-radius: 10px;
+    padding: 10px 15px;
+    animation: slideIn 600ms ease-out;
+    z-index: 9999;
+}
+.cName{
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 27px;
+    margin-bottom: 9px;
+    color: aliceblue;
+}
+.cId{
+    color: rgb(0, 255, 0);
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+.blog{
+    color: rgb(24, 22, 22);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 22px;
+}
+.showMore{
+    position: absolute;
+    display: none;
+    right: 60px;
+    bottom: 40px;
+    border: none;
+    padding: 6px;
+    border-top-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    background: rgba(105, 90, 205, 0.337);
+    cursor: pointer;
+}
+.loading{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    text-align: center;
+    font-weight: 500;
+}
+.load{
+    animation: load 700ms linear infinite;
+}
+@keyframes load {
+    0%{
+        opacity: 0;
+    }
+    50%{opacity: 1;}
+    100%{
+        opacity: 0;
+    }
+}
+@keyframes slideIn {
+    0%{
+        right: -300px;
+    }
+    50%{right: 50px;}
+    100%{
+        right: 20px;
+    }
+}
+
+ @media screen and (max-width: 600px) {
+    #cardContainer{
+    grid-template-columns: repeat(2, 2fr);
+    gap: 10px;
+}
+.cName{
+    font-size: 20px;
+    line-height: 22px;
+}
+.cId{
+    margin-bottom: 8px;
+}
+.blog{
+    font-size: 16px;
+    line-height: 20px;
+}
+  }
