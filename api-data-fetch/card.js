@@ -11,9 +11,14 @@ document.addEventListener('DOMContentLoaded', ()=>{
        renderCountry(newData)
     }
 
-    // function to map and render cardlists of blog post
+    // function to map and render each cardlists of blog post
     const renderCountry = (countries) =>{
-        showMore.style.display='block'
+        console.log(getDataList().length)
+        if(countries.length == 0){
+            showMore.style.display='none'
+        }else{
+            showMore.style.display='block'
+        }
         cardContainer.innerHTML = ''
         countries.forEach(country => {
             const card = createCard(country)
@@ -34,6 +39,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
         
     }
 
+    // get the card array from the DOM
     function getDataList() {
         let dataList = document.querySelectorAll('.cardList');
         return dataList
@@ -42,18 +48,19 @@ document.addEventListener('DOMContentLoaded', ()=>{
     // show more of the blog post button when clicked
     const showMore = document.querySelector('.showMore')
     showMore.addEventListener('click', function() {
-         const totalCardList = getDataList().length;
-         for (let i = visibleCard; i < Math.min(visibleCard + initialCard, totalCardList); i++) {
+        const totalCardList = getDataList().length;
+       
+        for(let i = visibleCard; i < Math.min(visibleCard + initialCard, totalCardList); i++) {
             getDataList()[i].style.display = 'block';
          }
          visibleCard += initialCard
-         
-    // hide the showmore if there is no more blg post avialable
+
+         // hide the showmore if there is no more blg post avialabl
          if (visibleCard >= totalCardList) {
             showMore.style.display = 'none'
         }
-    })  
-
+    })
+    
     // function that create a new cardlist container
     const createCard = (cardData)=>{
         // create the detalis container 
@@ -98,6 +105,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
         const clear = document.querySelector(`.clear`);
         clear.addEventListener('click',()=>{
             search.value='';
+            renderCountry(datas)
         }) 
 
     fetch('https://jsonplaceholder.typicode.com/posts')
