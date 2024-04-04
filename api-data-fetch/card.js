@@ -13,7 +13,13 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
     // function to map and render cardlists of blog post
     const renderCountry = (countries) =>{
-        showMore.style.display='block'
+        Showmore()
+        if(countries.length == 0 || visibleCard >= totalCardList){
+            showMore.style.display='none'
+        }else{
+            showMore.style.display='block'
+
+        }
         cardContainer.innerHTML = ''
         countries.forEach(country => {
             const card = createCard(country)
@@ -41,19 +47,25 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
     // show more of the blog post button when clicked
     const showMore = document.querySelector('.showMore')
+    const totalCardList = getDataList().length;
     showMore.addEventListener('click', function() {
-         const totalCardList = getDataList().length;
-         for (let i = visibleCard; i < Math.min(visibleCard + initialCard, totalCardList); i++) {
+         Showmore()
+        
+         // hide the showmore if there is no more blg post avialabl
+        hideShowMore()
+    })  
+    const Showmore = () =>{
+        for (let i = visibleCard; i < Math.min(visibleCard + initialCard, totalCardList); i++) {
             getDataList()[i].style.display = 'block';
          }
          visibleCard += initialCard
-         
-    // hide the showmore if there is no more blg post avialable
-         if (visibleCard >= totalCardList) {
+    }
+
+    function hideShowMore() {
+        if (visibleCard >= totalCardList) {
             showMore.style.display = 'none'
         }
-    })  
-
+    }
     // function that create a new cardlist container
     const createCard = (cardData)=>{
         // create the detalis container 
@@ -98,6 +110,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
         const clear = document.querySelector(`.clear`);
         clear.addEventListener('click',()=>{
             search.value='';
+            renderCountry(datas)
         }) 
 
     fetch('https://jsonplaceholder.typicode.com/posts')
