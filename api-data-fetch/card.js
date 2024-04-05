@@ -13,12 +13,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
     // function to map and render each cardlists of blog post
     const renderCountry = (countries) =>{
-        console.log(getDataList().length)
-        if(countries.length == 0){
-            showMore.style.display='none'
-        }else{
-            showMore.style.display='block'
-        }
+        showMore.style.display='block'
         cardContainer.innerHTML = ''
         countries.forEach(country => {
             const card = createCard(country)
@@ -47,20 +42,20 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
     // show more of the blog post button when clicked
     const showMore = document.querySelector('.showMore')
+    const totalCardList = getDataList().length;
     showMore.addEventListener('click', function() {
-        const totalCardList = getDataList().length;
-       
-        for(let i = visibleCard; i < Math.min(visibleCard + initialCard, totalCardList); i++) {
+         const totalCardList = getDataList().length;
+         for (let i = visibleCard; i < Math.min(visibleCard + initialCard, totalCardList); i++) {
             getDataList()[i].style.display = 'block';
          }
          visibleCard += initialCard
-
-         // hide the showmore if there is no more blg post avialabl
+         
+    // hide the showmore if there is no more blg post avialable
          if (visibleCard >= totalCardList) {
             showMore.style.display = 'none'
         }
-    })
-    
+    })  
+
     // function that create a new cardlist container
     const createCard = (cardData)=>{
         // create the detalis container 
