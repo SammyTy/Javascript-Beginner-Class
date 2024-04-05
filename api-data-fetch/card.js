@@ -9,6 +9,9 @@ document.addEventListener('DOMContentLoaded', ()=>{
                 data.title.toLowerCase().includes(searchItems.toLowerCase())
             )
        renderCountry(newData)
+       if(getDataList().length <= 12 ) {
+        showMore.style.display = 'none'
+        }
     }
 
     // function to map and render each cardlists of blog post
@@ -88,15 +91,12 @@ document.addEventListener('DOMContentLoaded', ()=>{
     
      search.addEventListener("input", function (e) {
          const searchTerm = e.target.value
-         filteredData(searchTerm)
-         if (visibleCard >= totalCardList) {
-            showMore.style.display = 'none'
-        }
          if (searchTerm != '') {
             clear.style.display = 'block'
          }else{
             clear.style.display = 'none'
          }
+         filteredData(searchTerm)
      })
 
     // function clear search but not done because the ui is not being updated
@@ -104,6 +104,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
         clear.addEventListener('click',()=>{
             search.value='';
             renderCountry(datas)
+            clear.style.display = 'none'
         }) 
 
     fetch('https://jsonplaceholder.typicode.com/posts')
