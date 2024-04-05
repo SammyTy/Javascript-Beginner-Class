@@ -89,6 +89,9 @@ document.addEventListener('DOMContentLoaded', ()=>{
      search.addEventListener("input", function (e) {
          const searchTerm = e.target.value
          filteredData(searchTerm)
+         if (visibleCard >= totalCardList) {
+            showMore.style.display = 'none'
+        }
          if (searchTerm != '') {
             clear.style.display = 'block'
          }else{
